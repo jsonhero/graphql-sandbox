@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["es2015", {"modules": false}],
+    "react",
+    "stage-0"
+  ],
+  "sourceMaps": true,
+  "plugins": [
+    "react-hot-loader/babel"
+  ],
+  "env": {
+    "development": {
+      "plugins": []
+    }
+  }
+}

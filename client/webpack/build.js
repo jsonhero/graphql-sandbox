@@ -30,7 +30,7 @@ function resolve(config) {
       alias: config.paths.alias || {},
       modules: [
           config.paths.appRoot,
-          path.resolve(__dirname, 'node_modules')
+          path.resolve(__dirname, '../node_modules')
       ],
       extensions: ['.jsx', '.js', '.scss', '.json'],
     }
@@ -73,7 +73,6 @@ function devServer (config) {
       contentBase: config.paths.appRoot,
       inline: true,
       historyApiFallback: true,
-      cache: true,
       host: config.host,
       hot: true,
       port: config.port,
@@ -119,7 +118,7 @@ function htmlPlugin (config) {
         hash: false,
         template: config.paths.template,
         inject: true,
-        favicon: config.paths.favicon,
+        // favicon: config.paths.favicon,
       }),
     ],
   };
