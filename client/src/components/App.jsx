@@ -1,35 +1,34 @@
-import React, { Compoment, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Relay from 'react-relay';
+import TodoContainer from './TodoContainer';
 
 class App extends Component {
-    
+
     static propTypes = {
         user: PropTypes.object,
+    }
+
+    static defaultProps = {
+        user: {
+            name: 'blah'
+        }
     }
 
     render() {
 
         const { user } = this.props;
-
         return (
-            <div>
-                <div>
-                    {'Name:'}
-                </div>
-                <div>
-                    {user.name}
-                </div>
-            </div>
-        )
+          <TodoContainer />
+        );
     }
 }
 
 export default Relay.createContainer(App, {
     fragments: {
-        user: () => Relay.QL`
-            fragment on User {
-                name,
-            }
-        `
+        // todos: () => Relay.QL`
+        //     fragment on Todo {
+        //         text,
+        //     }
+        // `
     }
 })

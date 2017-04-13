@@ -2,32 +2,42 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 const cors = require('cors');
+const models = require('./models');
 
 const schema = buildSchema(`
-  type User {
-    name: String
-    sayGreeting(name: String): String
+  type Todo {
+    text: String
+  }
+
+  input TodoInput {
+    text: String
   }
 
   type Query {
-    hello: String
-    getUser: User
+    createTodo(text: String): Todo
+    getTodos: [Todo]
   }
 `);
 
-class User {
-  constructor(name) {
-    this.name = name;
-  }
-
-  sayGreeting({ name }) {
-    return `${this.name} says hello to ${name}`;
+class Todo {
+  constructor(text) {
+    this.name = text;
   }
 }
 
-const root = { 
-  hello: () => 'Hello world!',
-  getUser: () => new User('jason'),
+const root = {
+  createTodo: (text) => {
+    return models.todo.create({}).then((todo) => {
+      console.log(todo , 'todo');
+      return todo;
+    })
+  },
+  getTodos: () => {
+    return models.todo.findAll().then((todos) => {
+      console.log(todos , 'todos');
+      return todos;
+    })
+  },
 };
 
 const app = express();
