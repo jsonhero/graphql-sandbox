@@ -15,6 +15,15 @@ class TodoMutation extends Relay.Mutation {
     }
   }
 
+  getConfigs() {
+    return [{
+      type: 'FIELDS_CHANGE',
+      fieldIDs: {
+        story: this.props.story.id,
+      },
+    }];
+  }
+
   static fragments = {
     todo: () => Relay.QL`
       fragment on Todo {

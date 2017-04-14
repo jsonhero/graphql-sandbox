@@ -15,8 +15,8 @@ class App extends Component {
     }
 
     render() {
+      console.log('ok')
 
-        const { user } = this.props;
         return (
           <TodoContainer />
         );
@@ -25,10 +25,10 @@ class App extends Component {
 
 export default Relay.createContainer(App, {
     fragments: {
-        // todos: () => Relay.QL`
-        //     fragment on Todo {
-        //         text,
-        //     }
-        // `
+        todos: () => Relay.QL`
+            fragment on Todo {
+                text,
+            }
+        `
     }
 })
